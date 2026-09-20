@@ -8,43 +8,39 @@
 
 ## Repository
 
-Target public repository: `legacyofshahz/scaffold-hbar-sovereign-settlement`
+https://github.com/legacyofshahz/scaffold-hbar-sovereign-settlement
 
-Scaffold command after publication:
+Scaffold command:
 
-```bash
-npm create scaffold-hbar@latest -- --template legacyofshahz/scaffold-hbar-sovereign-settlement
-```
 
-## Integration value
+pm create scaffold-hbar@latest -- --template legacyofshahz/scaffold-hbar-sovereign-settlement
 
-- **Supra:** live price + timestamp are required for the settlement to execute; removing Supra breaks the central safety property.
-- **Hedera EVM:** enforces signature, replay, expiry, value, oracle-age, and oracle-range constraints atomically.
-- **Mirror Node:** independently observes the contract result rather than trusting submission success.
-- **HCS:** anchors the post-settlement evidence hash as an ordered integrity record.
+## Verified testnet evidence
 
-## Submission evidence — populate only after G3 PASS
+- Deployed contract: 0x2B45E553ad7e6e727aDb6D8918AF7b4b142e1bd2
+- Contract HashScan: https://hashscan.io/testnet/contract/0x2B45E553ad7e6e727aDb6D8918AF7b4b142e1bd2
+- Settlement transaction: https://hashscan.io/testnet/transaction/0x900e24a5817b928a9f2f92aceab6ae0c4f0cbe59fb1927ba4ce7c5fee92877c9
+- Mirror contract result: https://testnet.mirrornode.hedera.com/api/v1/contracts/results/0x900e24a5817b928a9f2f92aceab6ae0c4f0cbe59fb1927ba4ce7c5fee92877c9
+- HCS topic: 0.0.10639224
+- HCS sequence: 1
+- HCS transaction ID: 0.0.8428297@1789945230.356455615
+- HCS HashScan: https://hashscan.io/testnet/topic/0.0.10639224
+- HCS Mirror evidence: https://testnet.mirrornode.hedera.com/api/v1/topics/0.0.10639224/messages/1
+- Settlement evidence hash: 0x4a6b77fba2515bb66144e03414ae8dace75589b7168d07bf4e481f6fa3de4184
 
-The final form must contain the actual public values from `evidence/testnet-proof.json`:
+Verification state:
 
-- public repository URL
-- deployed testnet contract address
-- settlement transaction HashScan/Mirror reference
-- HCS topic ID
-- HCS message transaction reference
-- evidence hash
-- developer-experience survey response
+- settlement execution: **PASS**
+- Mirror contract verification: **PASS**
+- HCS submission: **PASS**
+- Mirror HCS verification: **PASS**
 
-Do not enter fabricated transaction IDs, addresses, or proof links.
+## Evidence boundary
 
-## Rubric strategy
+The raw local evidence/testnet-proof.json remains excluded from Git.
 
-1. Mechanical eligibility first.
-2. Ecosystem integration: Supra is load-bearing, not decorative.
-3. Documentation: README + AGENTS + explicit evidence/safety model.
-4. Code quality: deterministic CCG, EIP-712, replay protection, meaningful negative tests, CI.
-5. Hedera depth: EVM execution + HCS evidence + Mirror verification.
+Only public blockchain identifiers and integrity hashes are published.
 
-## Prize strategy
+## Qualification boundary
 
-Primary objective: maximize this entry's score and clear every gate. Additional templates are attempted only after the primary is green and must be genuinely differentiated. The total pool is a campaign ceiling, not guaranteed proceeds.
+This demonstrates real Hedera testnet execution and verification. It does not claim mainnet or production qualification.

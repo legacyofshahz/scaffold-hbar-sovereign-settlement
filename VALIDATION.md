@@ -1,36 +1,59 @@
 # Validation Boundary
 
-## Executed in the ChatGPT build environment
+## Qualification state â€” 2026-09-21
 
-The repository's dependency-free `scripts/self-check.mjs` can be executed here. The environment does not have package-registry network access, so dependency installation, Hardhat compilation, Next.js build, and live Hedera testnet transactions cannot be truthfully claimed from this environment.
+### Local implementation qualification
 
-## Required external qualification before submission
+Observed successful qualification evidence includes:
 
-On a networked development machine or CI runner:
+- dependency-free self-check: **37/37 PASS**
+- Hardhat contract tests: **9/9 PASS**
+- Next guard tests: **12/12 PASS**
+- Solidity compilation: **PASS**
+- Next.js production build: **PASS**
 
-```bash
-npm install
-npm run self-check
-npm run lint
-npm test
-npm run build
-```
+### External Scaffold-HBAR qualification
 
-Then, with a funded Hedera **testnet-only** account:
+Official external Scaffold-HBAR generation completed successfully in GitHub Actions.
 
-```bash
-npm run deploy:testnet
-npm run prove:testnet
-```
+- official create-scaffold-hbar generation: **PASS**
+- generated structure qualification: **PASS**
+- G2 external scaffold gate: **PASS**
+- GitHub Actions run: 35540285622
 
-Submission readiness requires all commands to pass and a real `evidence/testnet-proof.json` to contain Mirror-verified EVM and HCS transactions.
+### Live Hedera testnet qualification
 
-## Hedera Harness status
+A bounded live testnet settlement completed successfully.
 
-Hedera Harness has **not** been executed against this artifact in the current environment. `docs/BUILD_SPEC.md` can be adapted into a Harness PRD later, but no Harness validators or PASS claim may be submitted unless the Harness is actually run.
+- Contract: 0x2B45E553ad7e6e727aDb6D8918AF7b4b142e1bd2
+- Settlement transaction: https://hashscan.io/testnet/transaction/0x900e24a5817b928a9f2f92aceab6ae0c4f0cbe59fb1927ba4ce7c5fee92877c9
+- Mirror contract-result verification: **PASS**
+- HCS submission: **PASS**
+- HCS Mirror verification: **PASS**
+- HCS topic: 0.0.10639224
+- HCS sequence: 1
+- Settlement evidence hash: 0x4a6b77fba2515bb66144e03414ae8dace75589b7168d07bf4e481f6fa3de4184
+- Mirror contract result: https://testnet.mirrornode.hedera.com/api/v1/contracts/results/0x900e24a5817b928a9f2f92aceab6ae0c4f0cbe59fb1927ba4ce7c5fee92877c9
+- Mirror HCS evidence: https://testnet.mirrornode.hedera.com/api/v1/topics/0.0.10639224/messages/1
 
-## Current environment dependency-install attempt
+Proof path:
 
-On 2026-09-20, `npm install --no-audit --no-fund` was attempted from the artifact root. The environment could resolve local workspaces but npm registry access failed with `EAI_AGAIN` while fetching `@hiero-ledger/sdk`; the command was terminated after the bounded execution timeout. No `node_modules` or `package-lock.json` was produced.
+EIP-712 authorization -> Supra oracle guard -> Hedera EVM settlement -> Mirror verification -> HCS evidence anchor -> Mirror HCS verification
 
-Classification: **environment/network blocker, not a code PASS or FAIL**. G1 remains unresolved until a networked runner executes install/lint/test/build.
+## Evidence handling
+
+evidence/testnet-proof.json is generated locally and deliberately excluded from Git.
+
+The public repository publishes only public-chain identifiers, Mirror/HashScan references, and cryptographic evidence hashes.
+
+## Remaining boundary
+
+This establishes reusable template behavior and real Hedera testnet execution evidence.
+
+It does not establish:
+
+- mainnet qualification
+- production qualification
+- guaranteed profitability
+- zero economic risk
+- oracle suitability for every application

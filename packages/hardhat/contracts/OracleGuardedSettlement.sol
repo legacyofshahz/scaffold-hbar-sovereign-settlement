@@ -153,12 +153,13 @@ contract OracleGuardedSettlement is Ownable, EIP712, ReentrancyGuard {
         ISupraSValueFeed.PriceFeed memory observed = supraFeed.getSvalue(
             intent.pairId
         );
-        if (observed.time > block.timestamp) {
-            revert OracleTimestampInFuture(observed.time, block.timestamp);
+        uint256 oracleTimestamp = observed.time > 10_000_000_000 ? observed.time / 1000 : observed.time;
+        if (oracleTimestamp > block.timestamp) {
+            revert OracleTimestampInFuture(oracleTimestamp, block.timestamp);
         }
-        if (block.timestamp - observed.time > intent.maxOracleAge) {
+        if (block.timestamp - oracleTimestamp > intent.maxOracleAge) {
             revert OracleStale(
-                observed.time,
+                oracleTimestamp,
                 intent.maxOracleAge,
                 block.timestamp
             );

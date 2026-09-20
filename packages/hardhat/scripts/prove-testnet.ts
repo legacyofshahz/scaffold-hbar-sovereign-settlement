@@ -114,13 +114,19 @@ async function main() {
   if (priceBandBps <= 0n || priceBandBps >= 10_000n)
     throw new Error("PRICE_BAND_BPS must be in (0,10000)");
   const maxOracleAge = BigInt(process.env.MAX_ORACLE_AGE_SECONDS || "7200");
-  const amountWei = ethers.parseEther(process.env.TEST_AMOUNT_HBAR || "0.001");
+  const amountHbar = process.env.TEST_AMOUNT_HBAR || "0.001";
+  const transactionValueWei = ethers.parseEther(amountHbar);
+  const amountWei = ethers.parseUnits(amountHbar, 8);
   const recipient =
     process.env.RECIPIENT_ADDRESS?.trim() || (await relayer.getAddress());
 
   const observed: any = await settlement.currentOraclePrice(pairId);
   const oraclePrice = BigInt(observed.price);
-  const oracleTimestamp = BigInt(observed.time);
+  const oracleTimestampRaw = BigInt(observed.time);
+  const oracleTimestamp =
+    oracleTimestampRaw > 10_000_000_000n
+      ? oracleTimestampRaw / 1000n
+      : oracleTimestampRaw;
   if (oraclePrice <= 0n)
     throw new Error(`Supra returned non-positive price for pair ${pairId}`);
 
@@ -178,7 +184,7 @@ async function main() {
   };
   const signature = await authorizerWallet.signTypedData(domain, TYPES, intent);
 
-  const tx = await settlement.execute(intent, signature, { value: amountWei });
+  const tx = await settlement.execute(intent, signature, { value: transactionValueWei });
   const receipt = await tx.wait();
   if (!receipt || receipt.status !== 1)
     throw new Error("Settlement transaction failed");

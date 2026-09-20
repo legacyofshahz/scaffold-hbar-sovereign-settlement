@@ -217,3 +217,23 @@ This template is intentionally testnet-first. It does not claim production quali
 ## License
 
 MIT.
+
+<!-- G3_VERIFIED_EVIDENCE_START -->
+## Verified Hedera testnet evidence
+
+A bounded live Hedera testnet proof has been completed successfully.
+
+- Contract: 0x2B45E553ad7e6e727aDb6D8918AF7b4b142e1bd2
+- Settlement transaction: https://hashscan.io/testnet/transaction/0x900e24a5817b928a9f2f92aceab6ae0c4f0cbe59fb1927ba4ce7c5fee92877c9
+- Mirror contract result: https://testnet.mirrornode.hedera.com/api/v1/contracts/results/0x900e24a5817b928a9f2f92aceab6ae0c4f0cbe59fb1927ba4ce7c5fee92877c9
+- HCS topic: 0.0.10639224
+- HCS sequence: 1
+- HCS Mirror verification: https://testnet.mirrornode.hedera.com/api/v1/topics/0.0.10639224/messages/1
+- HashScan contract: https://hashscan.io/testnet/contract/0x2B45E553ad7e6e727aDb6D8918AF7b4b142e1bd2
+- HashScan topic: https://hashscan.io/testnet/topic/0.0.10639224
+- Settlement evidence hash: 0x4a6b77fba2515bb66144e03414ae8dace75589b7168d07bf4e481f6fa3de4184
+
+Qualification boundary: this is verified testnet execution evidence, not a claim of mainnet or production qualification.
+
+The complete local proof artifact remains excluded from Git. Public submission material exposes only independently verifiable blockchain identifiers and integrity hashes.
+<!-- G3_VERIFIED_EVIDENCE_END -->
