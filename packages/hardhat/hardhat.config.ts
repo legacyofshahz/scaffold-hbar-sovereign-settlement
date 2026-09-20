@@ -5,7 +5,7 @@ import * as dotenv from "dotenv";
 
 dotenv.config();
 
-const privateKey = process.env.HEDERA_PRIVATE_KEY;
+const privateKey = process.env.DEPLOYER_PRIVATE_KEY;
 const accounts = privateKey ? [privateKey] : [];
 
 const config: HardhatUserConfig = {
