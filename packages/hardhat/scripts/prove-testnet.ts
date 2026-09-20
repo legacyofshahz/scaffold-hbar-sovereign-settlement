@@ -184,7 +184,9 @@ async function main() {
   };
   const signature = await authorizerWallet.signTypedData(domain, TYPES, intent);
 
-  const tx = await settlement.execute(intent, signature, { value: transactionValueWei });
+  const tx = await settlement.execute(intent, signature, {
+    value: transactionValueWei,
+  });
   const receipt = await tx.wait();
   if (!receipt || receipt.status !== 1)
     throw new Error("Settlement transaction failed");
