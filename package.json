@@ -1,24 +1,25 @@
-{
-  "name": "scaffold-hbar-sovereign-settlement",
-  "version": "0.1.0",
-  "private": true,
-  "description": "Scaffold-HBAR template for oracle-guarded, evidence-anchored Hedera settlements.",
-  "license": "MIT",
-  "workspaces": [
-    "packages/hardhat",
-    "packages/nextjs"
-  ],
-  "scripts": {
-    "self-check": "node scripts/self-check.mjs",
-    "lint": "npm run lint -w @sovereign/hardhat && npm run lint -w @sovereign/nextjs",
-    "test": "npm run test -w @sovereign/hardhat && npm run test:guard -w @sovereign/nextjs",
-    "build": "npm run build -w @sovereign/hardhat && npm run build -w @sovereign/nextjs",
-    "check": "npm run self-check && npm run lint && npm run test && npm run build",
-    "dev": "npm run dev -w @sovereign/nextjs",
-    "deploy:testnet": "npm run deploy:testnet -w @sovereign/hardhat",
-    "prove:testnet": "npm run prove:testnet -w @sovereign/hardhat"
-  },
-  "engines": {
-    "node": ">=20.18.3"
-  }
+﻿{
+    "name":  "scaffold-hbar-sovereign-settlement",
+    "version":  "0.1.0",
+    "private":  true,
+    "description":  "Scaffold-HBAR template for oracle-guarded, evidence-anchored Hedera settlements.",
+    "license":  "MIT",
+    "workspaces":  [
+                       "packages/hardhat",
+                       "packages/nextjs"
+                   ],
+    "scripts":  {
+                    "self-check":  "node scripts/self-check.mjs",
+                    "lint":  "npm run lint -w @sovereign/hardhat \u0026\u0026 npm run lint -w @sovereign/nextjs",
+                    "test":  "npm run test -w @sovereign/hardhat \u0026\u0026 npm run test:guard -w @sovereign/nextjs",
+                    "build":  "npm run build -w @sovereign/hardhat \u0026\u0026 npm run build -w @sovereign/nextjs",
+                    "check":  "npm run self-check \u0026\u0026 npm run lint \u0026\u0026 npm run test \u0026\u0026 npm run build",
+                    "dev":  "npm run dev -w @sovereign/nextjs",
+                    "deploy:testnet":  "npm run deploy:testnet -w @sovereign/hardhat",
+                    "prove:testnet":  "npm run prove:testnet -w @sovereign/hardhat",
+                    "format":  "prettier --write \"packages/hardhat/{contracts,scripts,test}/**/*.{sol,ts}\" packages/hardhat/hardhat.config.ts packages/nextjs/**/*.{ts,tsx,js,mjs,json,css,md}"
+                },
+    "engines":  {
+                    "node":  "\u003e=20.18.3"
+                }
 }

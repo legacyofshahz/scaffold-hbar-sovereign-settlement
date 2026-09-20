@@ -9,6 +9,7 @@ jobs:
   scaffold-proof:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+
     steps:
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -33,10 +34,27 @@ jobs:
             --skip-hedera-skills \
             --ci
 
-      - name: Verify generated project
+      - name: Verify generated project structure
         working-directory: /tmp/sovereign-settlement-proof
         run: |
-          npm run self-check
+          test -f package.json
+          test -f README.md
+          test -f AGENTS.md
+          test -f packages/hardhat/package.json
+          test -f packages/hardhat/contracts/OracleGuardedSettlement.sol
+          test -f packages/hardhat/scripts/prove-testnet.ts
+          test -f packages/nextjs/package.json
+          test -f packages/nextjs/app/page.tsx
+          test -f packages/nextjs/app/api/health/route.ts
+          echo "GENERATED_STRUCTURE=PASS"
+
+      - name: Verify generated application
+        working-directory: /tmp/sovereign-settlement-proof
+        env:
+          HARDHAT_DISABLE_TELEMETRY_PROMPT: "true"
+          NEXT_TELEMETRY_DISABLED: "1"
+        run: |
           npm run lint
           npm test
           npm run build
+          echo "GENERATED_APPLICATION=PASS"
