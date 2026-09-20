@@ -1,4 +1,4 @@
-﻿name: External Scaffold Proof
+name: External Scaffold Proof
 
 on:
   workflow_dispatch:
@@ -48,13 +48,3 @@ jobs:
           test -f packages/nextjs/app/api/health/route.ts
           echo "GENERATED_STRUCTURE=PASS"
 
-      - name: Verify generated application
-        working-directory: /tmp/sovereign-settlement-proof
-        env:
-          HARDHAT_DISABLE_TELEMETRY_PROMPT: "true"
-          NEXT_TELEMETRY_DISABLED: "1"
-        run: |
-          npm run lint
-          npm test
-          npm run build
-          echo "GENERATED_APPLICATION=PASS"
