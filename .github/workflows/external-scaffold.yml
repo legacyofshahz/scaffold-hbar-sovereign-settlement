@@ -1,4 +1,4 @@
-name: External Scaffold Proof
+﻿name: External Scaffold Proof
 
 on:
   workflow_dispatch:
@@ -14,6 +14,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20.18.3
+
+      - name: Configure Git identity for Scaffold-HBAR CLI
+        run: |
+          git config --global user.name "legacyofshahz"
+          git config --global user.email "41898282+legacyofshahz@users.noreply.github.com"
 
       - name: Scaffold this public template through the official CLI
         run: |
