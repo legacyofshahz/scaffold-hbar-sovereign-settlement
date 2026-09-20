@@ -1,0 +1,37 @@
+name: External Scaffold Proof
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  scaffold-proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.18.3
+
+      - name: Scaffold this public template through the official CLI
+        run: |
+          rm -rf /tmp/sovereign-settlement-proof
+          npx --yes create-scaffold-hbar@latest \
+            --destination /tmp/sovereign-settlement-proof \
+            --template legacyofshahz/scaffold-hbar-sovereign-settlement \
+            --frontend nextjs-app \
+            --solidity-framework hardhat \
+            --network testnet \
+            --package-manager npm \
+            --skip-hedera-skills \
+            --ci
+
+      - name: Verify generated project
+        working-directory: /tmp/sovereign-settlement-proof
+        run: |
+          npm run self-check
+          npm run lint
+          npm test
+          npm run build

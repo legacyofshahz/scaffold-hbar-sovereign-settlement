@@ -1,0 +1,46 @@
+{
+  "name": "oracle-guarded-sovereign-settlement",
+  "description": "Policy-constrained Hedera HBAR settlement with Supra price guards, EIP-712 authorization, HCS evidence anchoring, and Mirror Node verification.",
+  "create-scaffold-hbar": {
+    "capabilities": {
+      "frontend": [
+        "nextjs-app"
+      ],
+      "solidityFramework": [
+        "hardhat"
+      ],
+      "packageManager": [
+        "npm"
+      ]
+    },
+    "defaults": {
+      "frontend": "nextjs-app",
+      "solidityFramework": "hardhat",
+      "packageManager": "npm"
+    },
+    "outro": {
+      "sections": [
+        {
+          "title": "Prove a guarded Hedera settlement",
+          "steps": [
+            {
+              "text": "Copy packages/hardhat/.env.example to packages/hardhat/.env and provide testnet-only credentials locally. Never commit .env."
+            },
+            {
+              "label": "Deploy to Hedera testnet",
+              "command": "{run:hardhat:deploy:testnet}"
+            },
+            {
+              "label": "Execute + verify + anchor evidence",
+              "command": "{run:hardhat:prove:testnet}"
+            },
+            {
+              "label": "Start the evidence console",
+              "command": "{run:next:dev}"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

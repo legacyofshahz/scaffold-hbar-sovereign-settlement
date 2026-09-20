@@ -1,0 +1,18 @@
+node_modules/
+.next/
+artifacts/
+cache/
+coverage/
+typechain-types/
+dist/
+.env
+.env.*
+!.env.example
+packages/hardhat/deployments/*.json
+!packages/hardhat/deployments/.gitkeep
+evidence/testnet-proof.json
+evidence/*.live.json
+.DS_Store
+
+# Local debugging backups
+*.bak

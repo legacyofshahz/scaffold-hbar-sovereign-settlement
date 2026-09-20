@@ -1,0 +1,28 @@
+{
+  "name": "@sovereign/nextjs",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint . --max-warnings=0",
+    "test:guard": "tsx --test lib/guard.test.ts"
+  },
+  "dependencies": {
+    "@hiero-ledger/sdk": "^2.80.0",
+    "next": "15.2.8",
+    "react": "19.2.3",
+    "react-dom": "19.2.3"
+  },
+  "devDependencies": {
+    "@types/node": "22.10.2",
+    "@types/react": "19.0.7",
+    "@types/react-dom": "19.0.3",
+    "eslint": "9.23.0",
+    "eslint-config-next": "15.2.8",
+    "tsx": "4.19.3",
+    "typescript": "5.8.2",
+    "@eslint/eslintrc": "3.2.0"
+  }
+}
